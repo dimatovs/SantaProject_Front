@@ -1,0 +1,4 @@
+<div class="d-flex flex-row bd-highlight mb-3">
+    <input [class.is-invalid]="desireInput.control.invalid && desireInput.control.touched" required #desireInput="ngModel" [(ngModel)]="desireTitle" type="text" class="form-control field" placeholder="Введи свое желание тут" >
+    <button  (click)="saveDesire(desireInput)" type="button" class="btn btn-primary">{{buttonLabel}}</button>  
+</div>

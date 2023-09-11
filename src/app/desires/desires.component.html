@@ -1,0 +1,32 @@
+<ng-template #editDesireModal let-modal>
+    <div class="modal-header">
+		<h4 class="modal-title">Редактирование желания</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<div class="d-flex align-items-start flex-column bd-highlight mb-3">
+            <app-desire-input [buttonLabel]="'Сохранить'" [desireTitle]="currentEditDesire.title" (submit)="saveEditDesire($event, modal)"></app-desire-input>
+        </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+
+<div>
+    <h1>Заказ Деду Морозу</h1>
+    <ol>
+        <div *ngFor="let desire of desires" class="d-flex align-items-center desire-list">
+            <li class="desire">{{desire.title}}</li>
+            <a role="button" (click)="openEdit(editDesireModal, desire)" class="link-primary edit">edit </a>
+            <a (click)="deleteDesire(desire)" class="link-primary"> delete</a>
+        </div>
+        <li class="greyworld" *ngFor="let desire of newDesires">{{desire.title}}</li>
+    </ol>
+<h4>Напиши желание снизу</h4>
+    <div class="d-flex align-items-start flex-column bd-highlight mb-3">
+        <app-desire-input [buttonLabel]="'Добавить'" (submit)="addNewDesire($event)"></app-desire-input>
+        <button [disabled]="newDesires.length == 0" type="button" class="btn btn-primary" (click)="saveNewDesires()">Сохранить</button>
+    </div>
+</div>
